@@ -44,10 +44,6 @@ const DungeonsScreen = ({ navigation }) => {
           <Text style={styles.dungeonDescription}>{dungeon.description}</Text>
         </View>
       ))}
-      <Button
-        title="Back to Home"
-        onPress={goToHomeScreen}
-      />
     </View>
   );
 };

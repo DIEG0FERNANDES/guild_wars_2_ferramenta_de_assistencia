@@ -44,10 +44,6 @@ const RaidsScreen = ({ navigation }) => {
           <Text style={styles.raidDescription}>{raid.description}</Text>
         </View>
       ))}
-      <Button
-        title="Back to Home"
-        onPress={goToHomeScreen}
-      />
     </View>
   );
 };
