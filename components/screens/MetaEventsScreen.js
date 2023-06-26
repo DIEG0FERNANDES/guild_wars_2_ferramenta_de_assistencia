@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
-import { useState, useEffect } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useState, useEffect } from 'react';
 
 const MetaEventsScreen = ({ navigation }) => {
   const metaEvents = [
