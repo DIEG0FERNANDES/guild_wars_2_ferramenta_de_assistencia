@@ -1,9 +1,17 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 
 const WorldBossesScreen = () => {
   const [bosses, setBosses] = useState([]);
+
+  const navigation = useNavigation();
+
+  const goToHomeScreen = () => {
+    navigation.navigate('Home');
+  };
 
   useEffect(() => {
     fetch('https://api.guildwars2.com/v2/worldbosses')
@@ -20,14 +28,10 @@ const WorldBossesScreen = () => {
     return <Text>Carregando...</Text>;
   }
 
-  const goToHomeScreen = () => {
-    // Define your navigation logic to go back to the Home screen here
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>World Bosses Screen</Text>
-      {bosses.map((boss) => (
+      {bosses.map(boss => (
         <View key={boss.id} style={styles.bossContainer}>
           <Text style={styles.bossName}>Nome do World Boss: {boss.name}</Text>
           <Text style={styles.bossLocation}>{boss.location}</Text>
@@ -35,7 +39,6 @@ const WorldBossesScreen = () => {
           <Text>Tempo de Respawn: {boss.spawn_interval} segundos</Text>
         </View>
       ))}
-      <Button title="Back to Home" onPress={goToHomeScreen} />
     </View>
   );
 };
@@ -55,6 +58,9 @@ const styles = StyleSheet.create({
   },
   bossContainer: {
     marginBottom: 10,
+    backgroundColor: '#00E6E6',
+    padding: 10,
+    borderRadius: 10,
   },
   bossName: {
     fontSize: 18,
