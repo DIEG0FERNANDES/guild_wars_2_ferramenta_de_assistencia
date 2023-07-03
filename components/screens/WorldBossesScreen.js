@@ -34,8 +34,7 @@ const WorldBossesScreen = () => {
         {bosses.map(boss => (
           <View key={boss.id} style={styles.bossContainer}>
             <Text style={styles.bossName}>Nome do World Boss: {boss.name}</Text>
-            <Text style={styles.bossLocation}>{boss.location}</Text>
-            <Text>Nível Mínimo: {boss.level}</Text>
+            <Text style={styles.bossLocation}>Localizacao{boss.location}</Text>
             <Text>Tempo de Respawn: {boss.spawn_interval} segundos</Text>
           </View>
         ))}
