@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
 const RaidsScreen = ({ navigation }) => {
   const raids = [
@@ -37,13 +37,15 @@ const RaidsScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {raids.map((raid, index) => (
-        <View key={index} style={styles.raidContainer}>
-          <Text style={styles.raidName}>{raid.name}</Text>
-          <Text style={styles.raidLocation}>{raid.location}</Text>
-          <Text style={styles.raidDescription}>{raid.description}</Text>
-        </View>
-      ))}
+      <ScrollView>
+        {raids.map((raid, index) => (
+          <View key={index} style={styles.raidContainer}>
+            <Text style={styles.raidName}>{raid.name}</Text>
+            <Text style={styles.raidLocation}>{raid.location}</Text>
+            <Text style={styles.raidDescription}>{raid.description}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -55,17 +57,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#002727',
   },
+  scrollView: {
+    width: '100%',
+    paddingHorizontal: 20,
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  scrollView: {
-    width: '100%',
-    paddingHorizontal: 20,
-  },
   raidContainer: {
-    marginBottom: 20,
+    marginBottom: 15,
+    marginTop: 15,
     backgroundColor: '#00E6E6',
     padding: 10,
     borderRadius: 10,

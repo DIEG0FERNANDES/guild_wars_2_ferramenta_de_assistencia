@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
 
 const WorldBossesScreen = () => {
   const [bosses, setBosses] = useState([]);
@@ -14,19 +13,19 @@ const WorldBossesScreen = () => {
   };
 
   useEffect(() => {
-    fetch('https://api.guildwars2.com/v1/world_names', {
+    fetch('https://api.guildwars2.com/v2/worldbosses', {
       method: 'GET'
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data[0]);
-        setBosses(data);
+        const bossArray = data.map(bossId => ({ name: bossId }));
+        setBosses(bossArray);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
- 
+
   if (bosses.length === 0) {
     return <Text>Carregando...</Text>;
   }
@@ -34,11 +33,11 @@ const WorldBossesScreen = () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        {bosses.map(boss => (
-          <View key={boss.id} style={styles.bossContainer}>
-            <Text style={styles.bossName}>{boss.name} </Text>
-            <Text style={styles.bossLocation}>Localizacao:{boss.location} </Text>
-            <Text>Tempo de Respawn: {boss.spawn_interval} segundos</Text>
+        {bosses.map((boss, index) => (
+          <View key={index} style={styles.bossContainer}>
+            <Text style={styles.bossName}>{boss.name}</Text>
+            <Text style={styles.bossLocation}>localização</Text>
+            <Text>Tempo de Respawn:</Text>
           </View>
         ))}
       </ScrollView>
@@ -46,12 +45,17 @@ const WorldBossesScreen = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#002727',
+  },
+  scrollView: {
+    width: '100%',
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 24,

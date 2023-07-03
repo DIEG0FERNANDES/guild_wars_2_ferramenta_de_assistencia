@@ -44,7 +44,7 @@ const MetaEventsScreen = ({ navigation }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.guildwars2.com/v2/events', {
+    fetch('https://api.guildwars2.com/v1/events', {
       method: 'GET'
     })
       .then((response) => response.json())

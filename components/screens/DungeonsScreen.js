@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 
 const DungeonsScreen = ({ navigation }) => {
   const dungeons = [
@@ -37,13 +37,15 @@ const DungeonsScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {dungeons.map((dungeon, index) => (
-        <View key={index} style={styles.dungeonContainer}>
-          <Text style={styles.dungeonName}>{dungeon.name}</Text>
-          <Text style={styles.dungeonLocation}>{dungeon.location}</Text>
-          <Text style={styles.dungeonDescription}>{dungeon.description}</Text>
-        </View>
-      ))}
+      <ScrollView>
+        {dungeons.map((dungeon, index) => (
+          <View key={index} style={styles.dungeonContainer}>
+            <Text style={styles.dungeonName}>{dungeon.name}</Text>
+            <Text style={styles.dungeonLocation}>{dungeon.location}</Text>
+            <Text style={styles.dungeonDescription}>{dungeon.description}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -55,13 +57,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#002727',
   },
+  scrollView: {
+    width: '100%',
+    paddingHorizontal: 20,
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
   },
   dungeonContainer: {
-    marginBottom: 20,
+    marginBottom: 15,
+    marginTop: 15,
     backgroundColor: '#00E6E6',
     padding: 10,
     borderRadius: 10,
