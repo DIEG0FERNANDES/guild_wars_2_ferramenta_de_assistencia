@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
@@ -30,15 +30,17 @@ const WorldBossesScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>World Bosses Screen</Text>
-      {bosses.map(boss => (
-        <View key={boss.id} style={styles.bossContainer}>
-          <Text style={styles.bossName}>Nome do World Boss: {boss.name}</Text>
-          <Text style={styles.bossLocation}>{boss.location}</Text>
-          <Text>Nível Mínimo: {boss.level}</Text>
-          <Text>Tempo de Respawn: {boss.spawn_interval} segundos</Text>
-        </View>
-      ))}
+      <ScrollView style={styles.scrollView}>
+        {bosses.map(boss => (
+          <View key={boss.id} style={styles.bossContainer}>
+            <Text style={styles.bossName}>Nome do World Boss: {boss.name}</Text>
+            <Text style={styles.bossLocation}>{boss.location}</Text>
+            <Text>Nível Mínimo: {boss.level}</Text>
+            <Text>Tempo de Respawn: {boss.spawn_interval} segundos</Text>
+          </View>
+        ))}
+      </ScrollView>
+
     </View>
   );
 };
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
   bossName: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: '#06513E',
   },
   bossLocation: {
     fontSize: 14,

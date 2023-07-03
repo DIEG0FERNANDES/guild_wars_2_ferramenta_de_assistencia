@@ -19,8 +19,7 @@ const HomeScreen = ({navigation}) => {
       <Button
         title="Go to Dungeons"
         onPress={() => navigation.navigate('Dungeons')}
-      />
-     
+      />     
      
     </View>
   );
@@ -37,6 +36,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  button: {
+    marginBottom: 10,
+    width: 200,
+    padding: 10
   },
 });
 
