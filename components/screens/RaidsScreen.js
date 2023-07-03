@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
+import { Text, View, Button, ScrollView } from 'react-native';
+import RaidStyles from '../styles/RaidsStyles';
 
 const RaidsScreen = ({ navigation }) => {
   const raids = [
@@ -27,8 +28,7 @@ const RaidsScreen = ({ navigation }) => {
       name: 'Hall of Chains',
       location: 'Domain of Torment',
       description: 'Enter the Domain of Torment and face the raid bosses in the Hall of Chains.',
-    },
-    // Adicione mais raids aqui
+    }
   ];
 
   const goToHomeScreen = () => {
@@ -36,60 +36,18 @@ const RaidsScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={RaidStyles.container}>
       <ScrollView>
         {raids.map((raid, index) => (
-          <View key={index} style={styles.raidContainer}>
-            <Text style={styles.raidName}>{raid.name}</Text>
-            <Text style={styles.raidLocation}>{raid.location}</Text>
-            <Text style={styles.raidDescription}>{raid.description}</Text>
+          <View key={index} style={RaidStyles.raidContainer}>
+            <Text style={RaidStyles.raidName}>{raid.name}</Text>
+            <Text style={RaidStyles.raidLocation}>{raid.location}</Text>
+            <Text style={RaidStyles.raidDescription}>{raid.description}</Text>
           </View>
         ))}
       </ScrollView>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#002727',
-  },
-  scrollView: {
-    width: '100%',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  raidContainer: {
-    width: 380,
-    marginBottom: 15,
-    marginTop: 15,
-    backgroundColor: '#00E6E6',
-    padding: 10,
-    borderRadius: 10,
-  },
-  raidName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: '#06513E',
-  },
-  raidLocation: {
-    fontSize: 14,
-    fontStyle: 'italic',
-    marginBottom: 5,
-    color: '#06513E',
-  },
-  raidDescription: {
-    fontSize: 14,
-    color: '#06513E',
-  },
-});
 
 export default RaidsScreen;
