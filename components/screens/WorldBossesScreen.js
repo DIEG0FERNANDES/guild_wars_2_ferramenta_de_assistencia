@@ -30,14 +30,18 @@ const WorldBossesScreen = () => {
     try {
       const bossPromises = bossIds.map(async (bossId) => {
         const response = await axios.get(`https://api.guildwars2.com/v2/worldbosses/${bossId}`);
-        return response.data;
+        return {
+          id: response.data.id,
+          location: response.data.location,
+        };
       });
+
       const bossData = await Promise.all(bossPromises);
       setBosses(bossData);
     } catch (error) {
       console.error(error);
     }
-  };
+  };  
 
   if (bosses.length === 0) {
     return (
@@ -53,8 +57,7 @@ const WorldBossesScreen = () => {
         {bosses.map((boss, index) => (
           <View key={index} style={WorldBossesStyles.bossContainer}>
             <Text style={WorldBossesStyles.bossName}>{boss.id}</Text>
-            <Text style={WorldBossesStyles.bossLocation}>Localização</Text>
-            <Text style={WorldBossesStyles.bossStatus}>Ativo</Text>
+            <Text style={WorldBossesStyles.bossLocation}>{boss.location}</Text>
           </View>
         ))}
       </ScrollView>
