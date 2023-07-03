@@ -1,6 +1,5 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 const WorldBossesScreen = () => {
@@ -18,7 +17,7 @@ const WorldBossesScreen = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        const bossArray = data.map(bossId => ({ name: bossId }));
+        const bossArray = data.map(bossId => ({ id: bossId }));
         setBosses(bossArray);
       })
       .catch((error) => {
@@ -26,8 +25,65 @@ const WorldBossesScreen = () => {
       });
   }, []);
 
+  const fetchBossLocation = (bossId) => {
+    fetch(`https://api.guildwars2.com/v2/worldbosses/${bossId}`, {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const continentId = data.map_id;
+        fetch(`https://api.guildwars2.com/v2/continents?ids=${continentId}`, {
+          method: 'GET'
+        })
+          .then((response) => response.json())
+          .then((continentData) => {
+            const continent = continentData[continentId];
+            if (continent) {
+              const continentName = continent.name;
+              fetch(`https://api.guildwars2.com/v2/maps?ids=${continent.maps}`, {
+                method: 'GET'
+              })
+                .then((response) => response.json())
+                .then((mapData) => {
+                  const map = mapData.find((map) => map.id === data.map_id);
+                  if (map) {
+                    const mapName = map.name;
+                    const updatedBosses = bosses.map((boss) => {
+                      if (boss.id === bossId) {
+                        return { ...boss, location: `${mapName} (${continentName})` };
+                      }
+                      return boss;
+                    });
+                    setBosses(updatedBosses);
+                  }
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    console.log('Bosses:', bosses);
+    bosses.forEach((boss) => {
+      fetchBossLocation(boss.id);
+    });
+  }, [bosses]);
+
   if (bosses.length === 0) {
-    return <Text>Carregando...</Text>;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Carregando...</Text>
+      </View>
+    );
   }
 
   return (
@@ -35,8 +91,8 @@ const WorldBossesScreen = () => {
       <ScrollView style={styles.scrollView}>
         {bosses.map((boss, index) => (
           <View key={index} style={styles.bossContainer}>
-            <Text style={styles.bossName}>{boss.name}</Text>
-            <Text style={styles.bossLocation}>localização</Text>
+            <Text style={styles.bossName}>{boss.id}</Text>
+            <Text style={styles.bossLocation}>[{boss.location}]</Text>
             <Text>Tempo de Respawn:</Text>
           </View>
         ))}
@@ -44,7 +100,6 @@ const WorldBossesScreen = () => {
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -64,7 +119,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   bossContainer: {
-    marginBottom: 10,
+    marginBottom: 8,
+    marginTop: 10,
     backgroundColor: '#00E6E6',
     padding: 10,
     borderRadius: 10,

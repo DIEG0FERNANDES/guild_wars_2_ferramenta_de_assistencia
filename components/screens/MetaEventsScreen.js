@@ -4,53 +4,22 @@ import { useState, useEffect } from 'react';
 
 const MetaEventsScreen = ({ navigation }) => {
   const metaEvents = [
-    {
-      /**
-    {
-      name: 'Dragonfall',
-      location: 'Crystal Desert',
-      description:
-        'Battle against Kralkatorrik and its minions in the Crystal Desert.',
-    },
-    {
-      name: 'Verdant Brink',
-      location: 'Heart of Maguuma',
-      description:
-        'Engage in nighttime assault and daytime recovery events in the dense jungle.',
-    },
-    {
-      name: 'Auric Basin',
-      location: 'Heart of Maguuma',
-      description:
-        'Work with the local Exalted and Itzel to defend the Golden City of Tarir.',
-    },
-    {
-      name: 'Tangled Depths',
-      location: 'Heart of Maguuma',
-      description:
-        'Explore the underground labyrinth and aid the Nuhoch and Chak in their struggles.',
-    },
-    {
-      name: "Dragon's Stand",
-      location: 'Heart of Maguuma',
-      description:
-        'Join the Pact in an all-out assault on the jungle dragon Mordremoth.',
-    },
-     */
-    },
 
     // Adicione mais eventos meta aqui
   ];
   const [events, setEvents] = useState([]);
 
+  const goToHomeScreen = () => {
+    navigation.navigate('Home');
+  };
+
   useEffect(() => {
-    fetch('https://api.guildwars2.com/v1/events', {
+    fetch('https://api.guildwars2.com/v2/events', {
       method: 'GET'
     })
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
-        console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -59,12 +28,13 @@ const MetaEventsScreen = ({ navigation }) => {
   
 
   if (events.length === 0) {
-    return <Text>Carregando...</Text>;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>Carregando...</Text>
+      </View>
+    );
   }
 
-  const goToHomeScreen = () => {
-    navigation.navigate('Home');
-  };
 
   return (
     <View style={styles.container}>
@@ -72,8 +42,8 @@ const MetaEventsScreen = ({ navigation }) => {
         {metaEvents.map((event, index) => (
           <View key={index} style={styles.eventContainer}>
             <Text style={styles.eventName}>asdas{event.name}</Text>
-            <Text>asdasd{event.state}</Text>
             <Text style={styles.eventLocation}>asdasd{event.location}</Text>
+            <Text>asdasd{event.state}</Text>
             <Text style={styles.eventDescription}>asdasd{event.description}</Text>
           </View>
         ))}
