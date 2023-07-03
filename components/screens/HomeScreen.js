@@ -1,26 +1,41 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-       <Button
-        title="Go to World Bosses"
-        onPress={() => navigation.navigate('World Bosses')}
-      />
-       <Button
-        title="Go to Meta Events"
-        onPress={() => navigation.navigate('Meta Events')}
-      />
-      <Button
-        title="Go to Raids"
-        onPress={() => navigation.navigate('Raids')}
-      />
-      <Button
-        title="Go to Dungeons"
-        onPress={() => navigation.navigate('Dungeons')}
-      />     
-     
+      <View style={styles.buttonContainer}>
+        <Button
+          title="World Bosses"
+          onPress={() => navigation.navigate('World Bosses')}
+          style={styles.button}
+          color="#00E6E6"
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Meta Events"
+          onPress={() => navigation.navigate('Meta Events')}
+          style={styles.button}
+          color="#00E6E6"
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Raids"
+          onPress={() => navigation.navigate('Raids')}
+          style={styles.button}
+          color="#00E6E6"
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Dungeons"
+          onPress={() => navigation.navigate('Dungeons')}
+          style={styles.button}
+          color="#00E6E6"
+        />
+      </View>
     </View>
   );
 };
@@ -32,15 +47,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#002727',
   },
-  title: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  buttonContainer: {
+    padding: 10,
   },
   button: {
-    marginBottom: 10,
     width: 200,
-    padding: 10
+    padding: 100,
+    borderRadius: 15,
   },
 });
 

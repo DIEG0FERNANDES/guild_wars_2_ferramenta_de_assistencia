@@ -71,12 +71,6 @@ const WorldBossesScreen = () => {
       });
   };
 
-  useEffect(() => {
-    console.log('Bosses:', bosses);
-    bosses.forEach((boss) => {
-      fetchBossLocation(boss.id);
-    });
-  }, [bosses]);
 
   if (bosses.length === 0) {
     return (
@@ -119,6 +113,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   bossContainer: {
+    width: 380,
     marginBottom: 8,
     marginTop: 10,
     backgroundColor: '#00E6E6',

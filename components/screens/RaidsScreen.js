@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   raidContainer: {
+    width: 380,
     marginBottom: 15,
     marginTop: 15,
     backgroundColor: '#00E6E6',
