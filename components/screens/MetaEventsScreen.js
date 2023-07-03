@@ -44,15 +44,19 @@ const MetaEventsScreen = ({ navigation }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.guildwars2.com/v2/events')
+    fetch('https://api.guildwars2.com/v2/events', {
+      method: 'GET'
+    })
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
+  
 
   if (events.length === 0) {
     return <Text>Carregando...</Text>;
@@ -64,18 +68,16 @@ const MetaEventsScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Meta Events Screen</Text>
       <ScrollView style={styles.scrollView}>
         {metaEvents.map((event, index) => (
           <View key={index} style={styles.eventContainer}>
-            <Text style={styles.eventName}>{event.name}</Text>
-            <Text>{event.state}</Text>
-            <Text style={styles.eventLocation}>{event.location}</Text>
-            <Text style={styles.eventDescription}>{event.description}</Text>
+            <Text style={styles.eventName}>asdas{event.name}</Text>
+            <Text>asdasd{event.state}</Text>
+            <Text style={styles.eventLocation}>asdasd{event.location}</Text>
+            <Text style={styles.eventDescription}>asdasd{event.description}</Text>
           </View>
         ))}
       </ScrollView>
-      <Button title="Back to Home" onPress={goToHomeScreen} />
     </View>
   );
 };
@@ -91,17 +93,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: 'white',
   },
   eventContainer: {
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#00E6E6',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   eventName: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 5,
     color: '#06513E',
   },
   eventLocation: {

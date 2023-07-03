@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
@@ -14,16 +14,19 @@ const WorldBossesScreen = () => {
   };
 
   useEffect(() => {
-    fetch('https://api.guildwars2.com/v2/worldbosses')
-      .then(response => response.json())
-      .then(data => {
+    fetch('https://api.guildwars2.com/v1/world_names', {
+      method: 'GET'
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data[0]);
         setBosses(data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
-
+ 
   if (bosses.length === 0) {
     return <Text>Carregando...</Text>;
   }
@@ -33,13 +36,12 @@ const WorldBossesScreen = () => {
       <ScrollView style={styles.scrollView}>
         {bosses.map(boss => (
           <View key={boss.id} style={styles.bossContainer}>
-            <Text style={styles.bossName}>Nome do World Boss: {boss.name}</Text>
-            <Text style={styles.bossLocation}>Localizacao{boss.location}</Text>
+            <Text style={styles.bossName}>{boss.name} </Text>
+            <Text style={styles.bossLocation}>Localizacao:{boss.location} </Text>
             <Text>Tempo de Respawn: {boss.spawn_interval} segundos</Text>
           </View>
         ))}
       </ScrollView>
-
     </View>
   );
 };
