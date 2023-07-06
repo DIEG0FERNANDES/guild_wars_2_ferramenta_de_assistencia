@@ -1,48 +1,69 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import DungeonsStyles from '../styles/DungeonsStyle';
+import axios from 'axios';
 
 const DungeonsScreen = ({ navigation }) => {
-  const dungeons = [
-    {
-      name: 'Ascalonian Catacombs',
-      location: 'Plains of Ashford',
-      description: 'Explore the haunted catacombs and defeat the corrupted foes within.',
-    },
-    {
-      name: 'Caudecus\'s Manor',
-      location: 'Queensdale',
-      description: 'Infiltrate the manor and face off against Caudecus Beetlestone and his minions.',
-    },
-    {
-      name: 'Twilight Arbor',
-      location: 'Caledon Forest',
-      description: 'Venture into the heart of Caledon Forest and confront the Nightmare Court.',
-    },
-    {
-      name: 'Sorrow\'s Embrace',
-      location: 'Dredgehaunt Cliffs',
-      description: 'Descend into the underground city and battle the Dredge and their machinations.',
-    },
-    {
-      name: 'Citadel of Flame',
-      location: 'Fireheart Rise',
-      description: 'Journey to Fireheart Rise and challenge the Flame Legion within their citadel.',
-    }
-  ];
+  const [dungeons, setDungeons] = useState([]);
 
   const goToHomeScreen = () => {
     navigation.navigate('Home');
   };
+
+  useEffect(() => {
+    fetchDungeons();
+  }, []);
+
+  const fetchDungeons = async () => {
+    try {
+      const response = await axios.get('https://api.guildwars2.com/v2/dungeons');
+      const dungeonIds = response.data;
+      fetchDungeonDetails(dungeonIds);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchDungeonDetails = async (dungeonIds) => {
+    try {
+      const dungeonPromises = dungeonIds.map(async (dungeonId) => {
+        const response = await axios.get(`https://api.guildwars2.com/v2/dungeons/${dungeonId}`);
+        const paths = response.data.paths.map((path) => ({
+          id: path.id,
+          type: path.type,
+        }));
+        return {
+          id: response.data.id,
+          paths: paths,
+        };
+      });
+
+      const dungeonsData = await Promise.all(dungeonPromises);
+      setDungeons(dungeonsData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (dungeons.length === 0) {
+    return (
+      <View style={DungeonsStyles.container}>
+        <Text style={DungeonsStyles.title}>Carregando Dungeons...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={DungeonsStyles.container}>
       <ScrollView>
         {dungeons.map((dungeon, index) => (
           <View key={index} style={DungeonsStyles.dungeonContainer}>
-            <Text style={DungeonsStyles.dungeonName}>{dungeon.name}</Text>
-            <Text style={DungeonsStyles.dungeonLocation}>{dungeon.location}</Text>
-            <Text style={DungeonsStyles.dungeonDescription}>{dungeon.description}</Text>
+            <Text style={DungeonsStyles.dungeonName}>{dungeon.id}</Text>
+            {dungeon.paths.map((path, pathIndex) => (
+              <View key={pathIndex}>
+                <Text style={DungeonsStyles.dungeonDescription}>. {path.id}</Text>
+              </View>
+            ))}
           </View>
         ))}
       </ScrollView>
