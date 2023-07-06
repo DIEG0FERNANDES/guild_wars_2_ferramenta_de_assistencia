@@ -18,8 +18,8 @@ const HomeScreenStyles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonImage: {
-    width: 50,
-    height: 50,
+    width: 70,
+    height: 110,
     backgroundColor: '#06513E',
     marginRight: 10,
   },
