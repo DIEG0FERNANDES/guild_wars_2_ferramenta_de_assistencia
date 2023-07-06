@@ -29,11 +29,11 @@ const DungeonsScreen = ({ navigation }) => {
       const dungeonPromises = dungeonIds.map(async (dungeonId) => {
         const response = await axios.get(`https://api.guildwars2.com/v2/dungeons/${dungeonId}`);
         const paths = response.data.paths.map((path) => ({
-          id: path.id,
+          id: capitalizeFirstLetter(removeDungeonName(path.id.replace(/_/g, ' '))),
           type: path.type,
         }));
         return {
-          id: response.data.id,
+          id: capitalizeFirstLetter(response.data.id.replace(/_/g, ' ')),
           paths: paths,
         };
       });
@@ -43,6 +43,17 @@ const DungeonsScreen = ({ navigation }) => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+  const removeDungeonName = (string) => {
+    const lastIndex = string.lastIndexOf(' ');
+    if (lastIndex !== -1) {
+      return string.substring(lastIndex + 1);
+    }
+    return string;
   };
 
   if (dungeons.length === 0) {
@@ -61,7 +72,7 @@ const DungeonsScreen = ({ navigation }) => {
             <Text style={DungeonsStyles.dungeonName}>{dungeon.id}</Text>
             {dungeon.paths.map((path, pathIndex) => (
               <View key={pathIndex}>
-                <Text style={DungeonsStyles.dungeonDescription}>. {path.id}</Text>
+                <Text style={DungeonsStyles.dungeonDescription}>{pathIndex + 1}. {path.id}</Text>
               </View>
             ))}
           </View>
