@@ -31,7 +31,7 @@ const WorldBossesScreen = () => {
       const bossPromises = bossIds.map(async (bossId) => {
         const response = await axios.get(`https://api.guildwars2.com/v2/worldbosses/${bossId}`);
         return {
-          id: response.data.id,
+          id: capitalizeFirstLetter(response.data.id.replace(/_/g, ' ')),
           location: response.data.location,
         };
       });
@@ -42,6 +42,9 @@ const WorldBossesScreen = () => {
       console.error(error);
     }
   };  
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   if (bosses.length === 0) {
     return (
