@@ -68,13 +68,16 @@ const DungeonsScreen = ({ navigation }) => {
     <View style={DungeonsStyles.container}>
       <ScrollView>
         {dungeons.map((dungeon, index) => (
-          <View key={index} style={DungeonsStyles.dungeonContainer}>
-            <Text style={DungeonsStyles.dungeonName}>{dungeon.id}</Text>
-            {dungeon.paths.map((path, pathIndex) => (
-              <View key={pathIndex}>
-                <Text style={DungeonsStyles.dungeonDescription}>{pathIndex + 1}. {path.id}</Text>
-              </View>
-            ))}
+          <View style={DungeonsStyles.dungeonContainer}>
+            <View style={DungeonsStyles.buttonImage} />
+            <View key={index}>
+              <Text style={DungeonsStyles.dungeonName}>{dungeon.id}</Text>
+              {dungeon.paths.map((path, pathIndex) => (
+                <View key={pathIndex}>
+                  <Text style={DungeonsStyles.dungeonDescription}>{pathIndex + 1}. {path.id}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         ))}
       </ScrollView>
