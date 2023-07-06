@@ -1,35 +1,53 @@
-import React from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, ScrollView } from 'react-native';
 import RaidStyles from '../styles/RaidsStyles';
+import axios from 'axios';
 
 const RaidsScreen = ({ navigation }) => {
-  const raids = [
-    {
-      name: 'Spirit Vale',
-      location: 'Forsaken Thicket',
-      description: 'Venture into the Spirit Woods and face the first raid boss, Vale Guardian.',
-    },
-    {
-      name: 'Salvation Pass',
-      location: 'Forsaken Thicket',
-      description: 'Continue deeper into Forsaken Thicket and challenge the trio of raid bosses.',
-    },
-    {
-      name: 'Stronghold of the Faithful',
-      location: 'Forsaken Thicket',
-      description: 'Confront the raid bosses at the Stronghold of the Faithful.',
-    },
-    {
-      name: 'Bastion of the Penitent',
-      location: 'Lake Doric',
-      description: 'Explore the haunted prison and take on the raid bosses lurking within.',
-    },
-    {
-      name: 'Hall of Chains',
-      location: 'Domain of Torment',
-      description: 'Enter the Domain of Torment and face the raid bosses in the Hall of Chains.',
+  const [raids, setRaids] = useState([]);
+
+  useEffect(() => {
+    fetchRaids();
+  }, []);
+
+  const fetchRaids = async () => {
+    try {
+      const response = await axios.get('https://api.guildwars2.com/v2/raids');
+      const raidIds = response.data;
+      fetchRaidDetails(raidIds);
+    } catch (error) {
+      console.error(error);
     }
-  ];
+  };
+
+  const fetchRaidDetails = async (raidIds) => {
+    try {
+      const raidPromises = raidIds.map(async (raidId) => {
+        const response = await axios.get(`https://api.guildwars2.com/v2/raids/${raidId}`);
+        return {
+          id: capitalizeFirstLetter(response.data.id.replace(/_/g, ' ')),
+          wings: response.data.type
+        };
+      });
+
+      const raidData = await Promise.all(raidPromises);
+      setRaids(raidData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  if (raids.length === 0) {
+    return (
+      <View style={RaidStyles.container}>
+        <Text style={RaidStyles.title}>Carregando Raids...</Text>
+      </View>
+    );
+  }
 
   const goToHomeScreen = () => {
     navigation.navigate('Home');
@@ -40,9 +58,8 @@ const RaidsScreen = ({ navigation }) => {
       <ScrollView>
         {raids.map((raid, index) => (
           <View key={index} style={RaidStyles.raidContainer}>
-            <Text style={RaidStyles.raidName}>{raid.name}</Text>
-            <Text style={RaidStyles.raidLocation}>{raid.location}</Text>
-            <Text style={RaidStyles.raidDescription}>{raid.description}</Text>
+            <Text style={RaidStyles.raidName}>{raid.id}</Text>
+            <Text style={RaidStyles.raidDescription}>Wings: {raid.wings}</Text>
           </View>
         ))}
       </ScrollView>
