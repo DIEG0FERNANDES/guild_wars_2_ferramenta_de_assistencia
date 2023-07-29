@@ -6,28 +6,33 @@ import MetaEventsStyles from '../styles/MetaEventsStyles';
 const MetaEventsScreen = ({ navigation }) => {
   const [events, setEvents] = useState([]);
 
+  // useEffect(() => {
+  //   fecthEvents()
+  // }) 
+
   const goToHomeScreen = () => {
     navigation.navigate('Home');
   };
-
-  // useEffect(() => {
-  //   fetch('https://api.guildwars2.com/v2/events')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setEvents(data);
-  //     })
-  //     .catch(error => {
-  //       console.error(error);
-  //     });
-  // }, []);
-
-  // if (events.length === 0) {
-  //   return (
-  //     <View style={MetaEventsStyles.container}>
-  //       <Text style={MetaEventsStyles.title}>Carregando...</Text>
-  //     </View>
-  //   );
-  // }
+  const fetchEvents = async () => {
+    try {
+      const response = await axios.get('https://api.guildwars2.com/v2/events')
+      const eventsIds = response.data
+      fetchEventsDetails(eventsIds)
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
+  const fetchEventsDetails = async () => {
+      
+  }
+  if (events.length === 0) {
+    return (
+      <View style={MetaEventsStyles.container}>
+        <Text style={MetaEventsStyles.title}>Carregando...</Text>
+      </View>
+    );
+  }
 
   const metaEvents = [
     {
@@ -86,7 +91,7 @@ const MetaEventsScreen = ({ navigation }) => {
         {metaEvents.map((event, index) => (
           <View key={index} style={MetaEventsStyles.eventContainer}>
             <Text style={MetaEventsStyles.eventName}>{event.name}</Text>
-            <Text style={MetaEventsStyles.eventLocation}>{event.locations}}</Text>
+            <Text style={MetaEventsStyles.eventLocation}>{event.locations}</Text>
             <Text>{event.time}</Text>
             <Text style={MetaEventsStyles.eventDescription}>Level: {event.level}</Text>
           </View>
