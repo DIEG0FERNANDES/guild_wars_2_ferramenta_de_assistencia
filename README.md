@@ -1,11 +1,68 @@
-# Sample Snack app
+# Guild Wars 2 - Ferramenta de Assistencia
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+## Sumário
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
+- [guild_wars_2_ferramente_de_assistencia](#guild_wars_2_ferramente_de_assistencia)
+  - [Sumário](#sumário)
+  - [Motivação](#motivação)
+  - [Time](#time)
+  - [Pilha de tecnologia](#pilha-de-tecnologia)
+  - [Como rodar](#como-rodar)
+    - [Pré-requisitos](#pré-requisitos)
+    - [Passo a passo](#passo-a-passo)
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+## Motivação
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
+Este repositório de código apresentado no [Curso Superior de TSI do IFMS](https://www.ifms.edu.br/campi/campus-aquidauana/cursos/graduacao/sistemas-para-internet/sistemas-para-internet) como requisito para obtenção da nota parcial de uma atividade da unidade curricular Dispositivos Móveis, a qual consistiu em redigir um [aplicativo funcional] na qual eu apresento uma ferramenta que pode ser util para se utilizar enquanto joga um game de nome Guild Wars 2.
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+## Time
+
+- [Paulo Daniel Ribeiro](https://github.com/Paulodanielribeiro)
+- Diego dos Santos Fernandes
+
+## Pilha de tecnologia
+
+As seguintes tecnologias foram utilizadas para desenvolver este app:
+
+| Papel | Tecnologia |
+|-|-|
+| Linguagem de programação | [Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript) |
+
+## Como rodar
+
+### Pré-requisitos
+
+- [Node](https://nodejs.org/en/download/);
+- [Yarn](https://yarnpkg.com/) (opcional).
+
+### Passo a passo
+
+1. Clone o repositório de código em sua máquina;
+   
+2. Abra um shell de comando de sua preferência (prompt de comando, PowerShell, Windows Terminal _etc_.);
+
+3. Instale as dependências do projeto através do seguinte comando:
+
+```console
+$ npm install
+```
+
+Caso esteja utilizando o gerenciador de pacotes Yarn, execute o seguinte comando como alternativa:
+
+```console
+$ yarn
+```
+
+4. Finalmente, execute o seguinte comando para iniciar o app:
+
+Para npm:
+
+```console
+$ npm run start
+```
+
+Para Yarn:
+
+```console
+$ yarn start
+```
