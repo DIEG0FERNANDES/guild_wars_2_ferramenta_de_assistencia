@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'; // 
 import HomeScreen from './src/pages/home'; // Importa HomeScreen da pasta home
 import DungeonsScreen from './src/pages/dungeon';
 import MetaEventsScreen from './src/pages/metaevents'; // Importa DungeonsScreen da pasta dungeon
+import RaidsScreen from './src/pages/raids';
+import WorldBossesScreen from './src/pages/worldbosses';
 
 export default function App() {
   const Stack = createNativeStackNavigator(); // Mova a criação do Stack para dentro da função
@@ -34,6 +36,16 @@ export default function App() {
           name="MetaEvents"
           component={MetaEventsScreen}
           options={{ title: 'Meta Events' }}
+        />
+        <Stack.Screen
+          name="Raids"
+          component={RaidsScreen}
+          options={{ title: 'Raids' }}
+        />
+        <Stack.Screen
+          name="WorldBosses"
+          component={WorldBossesScreen}
+          options={{ title: 'World Bosses' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

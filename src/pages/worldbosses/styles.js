@@ -1,44 +1,40 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
-const WorldBossesStyles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#002727',
-    },
-    scrollView: {
-      width: '100%',
-      paddingHorizontal: 20,
-    },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      marginBottom: 20,
-      color: 'white',
-    },
-    bossContainer: {
-      width: 380,
-      marginBottom: 8,
-      marginTop: 10,
-      backgroundColor: '#00E6E6',
-      padding: 10,
-      borderRadius: 10,
-    },
-    bossName: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: '#06513E',
-      textAlign: 'center'
-    },
-    bossLocation: {
-      fontSize: 14,
-      fontStyle: 'italic',
-    },
-    bossStatus: {
-      fontSize: 14,
-      fontWeight: 'bold',
-    },
-  });
+export const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: #002727;
+`
 
-  export default WorldBossesStyles;
+export const ScrollContainer = styled.ScrollView`
+  width: 100%;
+`
+export const Texto = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
+`
+export const Boss = styled.View`
+  width: 380px;
+  margin-bottom: 8px;
+  margin-top: 10px;
+  background-color: #00E6E6;
+  padding: 10px;
+  border-radius: 10px;
+`
+export const Nome = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #06513E;
+  text-align: center;
+`
+export const Localizacao = styled.Text`
+  font-size: 14px;
+  font-style: italic;
+`
+export const Status = styled.Text`
+  font-size: 14px;
+  font-weight: bold;
+`

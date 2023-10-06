@@ -1,8 +1,7 @@
 # Guild Wars 2 - Ferramenta de Assistencia
 
 ## Sumário
-
-- [guild_wars_2_ferramente_de_assistencia](#guild_wars_2_ferramente_de_assistencia)
+- [Guild Wars 2 - Ferramenta de Assistencia](#guild-wars-2---ferramenta-de-assistencia)
   - [Sumário](#sumário)
   - [Motivação](#motivação)
   - [Time](#time)
@@ -13,7 +12,7 @@
 
 ## Motivação
 
-Este repositório de código apresentado no [Curso Superior de TSI do IFMS](https://www.ifms.edu.br/campi/campus-aquidauana/cursos/graduacao/sistemas-para-internet/sistemas-para-internet) como requisito para obtenção da nota parcial de uma atividade da unidade curricular Dispositivos Móveis, a qual consistiu em redigir um [aplicativo funcional] na qual eu apresento uma ferramenta que pode ser util para se utilizar enquanto joga um game de nome Guild Wars 2.
+Este repositório de código apresentado no [Curso Superior de TSI do IFMS](https://www.ifms.edu.br/campi/campus-aquidauana/cursos/graduacao/sistemas-para-internet/sistemas-para-internet) como requisito para obtenção da nota parcial de uma atividade da unidade curricular Dispositivos Móveis I, a qual consistiu em redigir um [aplicativo funcional] na qual eu apresento uma ferramenta que pode ser util para se utilizar enquanto joga um game de nome Guild Wars 2.
 
 ## Time
 

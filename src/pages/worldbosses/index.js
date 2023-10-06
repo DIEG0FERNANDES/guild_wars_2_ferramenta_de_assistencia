@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import WorldBossesStyles from './styles';
+import WorldBossesStyles, { Boss, Container, Localizacao, Nome, ScrollContainer } from './styles';
 
 const WorldBossesScreen = () => {
   const [bosses, setBosses] = useState([]);
@@ -48,23 +48,23 @@ const WorldBossesScreen = () => {
 
   if (bosses.length === 0) {
     return (
-      <View style={WorldBossesStyles.container}>
-        <Text style={WorldBossesStyles.title}>Carregando...</Text>
-      </View>
+      <Container>
+        <Texto>Carregando...</Texto>
+      </Container>
     );
   }
 
   return (
-    <View style={WorldBossesStyles.container}>
-      <ScrollView style={WorldBossesStyles.scrollView}>
+    <Container>
+      <ScrollContainer>
         {bosses.map((boss, index) => (
-          <View key={index} style={WorldBossesStyles.bossContainer}>
-            <Text style={WorldBossesStyles.bossName}>{boss.id}</Text>
-            <Text style={WorldBossesStyles.bossLocation}>{boss.location}</Text>
-          </View>
+          <Boss>
+            <Nome>{boss.id}</Nome>
+            <Localizacao>{boss.location}</Localizacao>
+          </Boss>
         ))}
-      </ScrollView>
-    </View>
+      </ScrollContainer>
+    </Container>
   );
 };
 

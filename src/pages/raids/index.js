@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import RaidStyles from '../styles/RaidsStyles';
 import axios from 'axios';
+import { Container, Localizacao, Nome, Raid, Texto } from './styles';
 
 const RaidsScreen = ({ navigation }) => {
   const [raids, setRaids] = useState([]);
@@ -43,9 +43,9 @@ const RaidsScreen = ({ navigation }) => {
 
   if (raids.length === 0) {
     return (
-      <View style={RaidStyles.container}>
-        <Text style={RaidStyles.title}>Carregando Raids...</Text>
-      </View>
+      <Container>
+        <Texto>Carregando Raids...</Texto>
+      </Container>
     );
   }
 
@@ -54,16 +54,17 @@ const RaidsScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={RaidStyles.container}>
+    <Container>
       <ScrollView>
         {raids.map((raid, index) => (
-          <View key={index} style={RaidStyles.raidContainer}>
-            <Text style={RaidStyles.raidName}>{raid.id}</Text>
-            <Text style={RaidStyles.raidDescription}>Wings: {raid.wings}</Text>
-          </View>
+          <Raid key={index}>
+            <Nome>{raid.id}</Nome>
+            <Localizacao>Teste</Localizacao>
+            <Descricao >Wings: {raid.wings}</Descricao>
+          </Raid>
         ))}
       </ScrollView>
-    </View>
+    </Container>
   );
 };
 
