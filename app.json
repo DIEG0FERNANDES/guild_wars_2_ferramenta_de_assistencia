@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "gw2_api",
-    "slug": "snack-ab08b522-2be3-4698-98fa-a0f212c0ae10",
+    "name": "guild_wars_2_ferramenta_de_assistencia",
+    "slug": "guild_wars_2_ferramenta_de_assistencia",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,9 +10,6 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
@@ -23,7 +20,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {

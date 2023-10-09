@@ -1,64 +1,11 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'; // Importa createNativeStackNavigator
-
-import HomeScreen from './src/pages/home'; // Importa HomeScreen da pasta home
-import DungeonsScreen from './src/pages/dungeon';
-import MetaEventsScreen from './src/pages/metaevents'; // Importa DungeonsScreen da pasta dungeon
-import RaidsScreen from './src/pages/raids';
-import WorldBossesScreen from './src/pages/worldbosses';
+import { StatusBar } from 'expo-status-bar';
+import HomeScreen from './screens/HomeScreen';
 
 export default function App() {
-  const Stack = createNativeStackNavigator(); // Mova a criação do Stack para dentro da função
-
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: styles.header,
-          headerTitleAlign: 'center',
-          headerTitleStyle: styles.headerTitle,
-        }}
-      >
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: 'Página Inicial' }}
-        />
-        <Stack.Screen
-          name="Dungeons"
-          component={DungeonsScreen}
-          options={{ title: 'Dungeons' }}
-        />
-        <Stack.Screen
-          name="MetaEvents"
-          component={MetaEventsScreen}
-          options={{ title: 'Meta Events' }}
-        />
-        <Stack.Screen
-          name="Raids"
-          component={RaidsScreen}
-          options={{ title: 'Raids' }}
-        />
-        <Stack.Screen
-          name="WorldBosses"
-          component={WorldBossesScreen}
-          options={{ title: 'World Bosses' }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <StatusBar style="auto"/>
+      <HomeScreen/>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: '#00E6E6',
-  },
-  headerTitle: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    color: '#06513E',
-  },
-});
