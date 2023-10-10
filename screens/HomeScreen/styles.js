@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import styled from "styled-components/native";
 
 export const Body = styled.View`
@@ -8,6 +9,7 @@ export const Body = styled.View`
 `;
 export const Container = styled.View`
   flex: 1;
+  padding: 10px;
   margin-left: 15px;
   margin-right: 15px;
 `;
@@ -17,16 +19,22 @@ export const Botao = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 25px;
+  margin: 19px;
   border-radius: 8px;
 `;
 export const BoxImg = styled.View`
   background-color: blue;
-  height: 100px;
-  width: 100px;
+  height: 135px;
+  width: 135px;
   margin: 5px;
   border-radius: 6px;
 `;
 export const BoxTitulo = styled.Text`
-  font-size: 25px;
+  font-size: 20px;
+  margin: 5px;
 `;
+
+
+export const ArrowRight  = styled(FontAwesomeIcon)`
+  margin: 5px;
+`

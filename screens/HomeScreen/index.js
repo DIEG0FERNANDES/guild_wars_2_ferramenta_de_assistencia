@@ -1,6 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import Header from "../../components/Header";
-import { Body, BoxImg, BoxTitulo, Container, Botao } from "./styles";
+import { Body, BoxImg, BoxTitulo, Container, Botao, ArrowRight } from "./styles";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const HomeScreen = () => {
@@ -11,22 +10,22 @@ const HomeScreen = () => {
         <Botao>
             <BoxImg/>
             <BoxTitulo>Bosses Mundiais</BoxTitulo>
-            <FontAwesomeIcon icon={faArrowRight}/>
+            <ArrowRight icon={faArrowRight}/>
         </Botao>
         <Botao>
             <BoxImg/>
             <BoxTitulo>Eventos Meta</BoxTitulo>
-            <FontAwesomeIcon icon={faArrowRight}/>
+            <ArrowRight icon={faArrowRight}/>
         </Botao>
         <Botao>
             <BoxImg/>
             <BoxTitulo>Raids</BoxTitulo>
-            <FontAwesomeIcon icon={faArrowRight}/>
+            <ArrowRight icon={faArrowRight}/>
         </Botao>
         <Botao>
             <BoxImg/>
             <BoxTitulo>Dungeons</BoxTitulo>
-            <FontAwesomeIcon icon={faArrowRight}/>
+            <ArrowRight icon={faArrowRight}/>
         </Botao>
       </Container>
     </Body>
