@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from "react";
 // import { Text, View, ScrollView } from "react-native";
 // import axios from "axios";
-// import { Container, Localizacao, Nome, Raid, Texto } from "./styles";
+import { Container, Localizacao, Nome, Raid, Texto } from "./styles";
 
 // const RaidsScreen = ({ navigation }) => {
 //   const [raids, setRaids] = useState([]);
@@ -71,3 +71,15 @@
 // };
 
 // export default RaidsScreen;
+
+const RaidsScreen = () => {
+  return (
+    <>
+      <Container>
+        <Nome>{/*{raid.id} */}</Nome>
+      </Container>
+    </>
+  );
+};
+
+export default RaidsScreen;

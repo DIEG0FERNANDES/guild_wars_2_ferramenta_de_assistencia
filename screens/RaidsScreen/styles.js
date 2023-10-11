@@ -1,6 +1,9 @@
-// -// src/pages/raids/styles.js
-// import styled from "styled-components/native";
+import styled from "styled-components/native"
 
+-// src/pages/raids/styles.js
+export const Container = styled.View`
+flex: 1;
+`
 // export const Container = styled.View`
 //   flex: 1;
 //   align-items: center;
